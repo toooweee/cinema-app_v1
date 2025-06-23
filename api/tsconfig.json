@@ -59,6 +59,24 @@
       ],
       "@movies/*": [
         "src/movies/*"
+      ],
+      "@mail": [
+        "src/mail"
+      ],
+      "@mail/*": [
+        "src/mail/*"
+      ],
+      "@clients": [
+        "src/clients"
+      ],
+      "@clients/*": [
+        "src/clients/*"
+      ],
+      "@employees": [
+        "src/employees"
+      ],
+      "@employees/*": [
+        "src/employees/*"
       ]
     }
   }
