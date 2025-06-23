@@ -4,7 +4,7 @@
 
 Table roles {
   id String [pk]
-  name String [not null]
+  name String [unique, not null]
   clients clients [not null]
   employees employees [not null]
   createdAt DateTime [default: `now()`, not null]
@@ -53,8 +53,8 @@ Table employees {
 
 Table clients {
   id String [pk]
-  name String [not null]
-  dateOfBirth DateTime [not null]
+  name String
+  dateOfBirth DateTime
   user users [not null]
   userId String [unique, not null]
   role roles [not null]

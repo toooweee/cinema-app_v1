@@ -14,13 +14,14 @@ datasource db {
 
 model Role {
   id        String     @id @default(uuid())
-  name      String
+  name      String     @unique
   clients   Client[]
   employees Employee[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  @@index([name])
   @@map("roles")
 }
 
@@ -75,13 +76,13 @@ model Employee {
 }
 
 model Client {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String?
   dateOfBirth DateTime? @map("date_of_birth")
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String   @unique @map("user_id")
-  role        Role     @relation(fields: [roleId], references: [id], onDelete: Restrict)
-  roleId      String   @map("role_id")
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String    @unique @map("user_id")
+  role        Role      @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  roleId      String    @map("role_id")
 
   @@map("clients")
 }

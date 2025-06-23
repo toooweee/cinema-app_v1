@@ -14,7 +14,7 @@ export class AuthController {
       'Register. Sets refresh_token to cookies and give you access token',
   })
   async register(@Body() registerDto: AuthDto) {
-    return registerDto;
+    return this.authService.register(registerDto);
   }
 
   @Post('login')

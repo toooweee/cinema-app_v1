@@ -11,6 +11,7 @@ import { RolesModule } from './roles/roles.module';
 import { EmployeesModule } from './employees/employees.module';
 import { ClientsModule } from './clients/clients.module';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
     RolesModule,
     EmployeesModule,
     ClientsModule,
+    MailModule,
   ],
   providers: [
     { provide: APP_FILTER, useClass: PrismaExceptionFilter },
