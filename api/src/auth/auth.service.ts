@@ -51,13 +51,6 @@ export class AuthService {
           },
         },
       },
-      include: {
-        client: {
-          include: {
-            role: true,
-          },
-        },
-      },
     });
 
     const payload: JwtPayload = {

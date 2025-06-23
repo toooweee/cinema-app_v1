@@ -13,12 +13,16 @@ import { AuthDto } from '@auth/dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { refreshTokenKey } from '@tokens/types/refresh-token-key';
+import { Public } from '@auth/decorators';
+import { CurrentUser } from '@common/decorators';
+import { RequestUser } from '@auth/types';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post('register')
   @ApiOperation({
     summary:
@@ -35,6 +39,7 @@ export class AuthController {
     };
   }
 
+  @Public()
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
@@ -58,7 +63,9 @@ export class AuthController {
   async refresh(
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
+    @CurrentUser() currentUser: RequestUser,
   ) {
+    console.log(currentUser);
     const refreshToken: string = req.cookies[refreshTokenKey];
     const tokens = await this.authService.refreshTokens(refreshToken);
     this.setTokenToCookies(tokens.refreshToken, res);

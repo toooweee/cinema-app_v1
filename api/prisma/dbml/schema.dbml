@@ -44,7 +44,7 @@ Table employees {
   id String [pk]
   name String [not null]
   employmentDate DateTime [not null]
-  dissimalDate DateTime [not null]
+  dismissalDate DateTime [not null]
   user users [not null]
   userId String [unique, not null]
   role roles [not null]

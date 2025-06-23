@@ -46,16 +46,19 @@ export class TokensService {
   }
 
   async refreshTokens(token: string) {
-    const tokenFromDb = await this.findRefreshToken(token);
+    const payload: JwtPayload & { exp: string; iat: string } =
+      await this.jwtService.verifyAsync(
+        token,
+        this.configService.getOrThrow('JWT_RT_SECRET'),
+      );
 
-    if (!tokenFromDb) {
+    if (!payload) {
       throw new UnauthorizedException();
     }
 
-    const payload: JwtPayload & { exp: string; iat: string } =
-      await this.jwtService.verifyAsync(token);
+    const tokenFromDb = await this.findRefreshToken(token);
 
-    if (!payload) {
+    if (!tokenFromDb) {
       throw new UnauthorizedException();
     }
 
