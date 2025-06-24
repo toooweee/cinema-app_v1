@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from '@users/users.module';
 import * as Joi from 'joi';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { PrismaExceptionFilter } from '@common/exception-filters';
-import { PrismaModule } from './prisma/prisma.module';
-import { AuthModule } from './auth/auth.module';
-import { TokensModule } from './tokens/tokens.module';
-import { RolesModule } from './roles/roles.module';
-import { EmployeesModule } from './employees/employees.module';
-import { ClientsModule } from './clients/clients.module';
+import { PrismaModule } from '@prisma/prisma.module';
+import { AuthModule } from '@auth/auth.module';
+import { TokensModule } from '@tokens/tokens.module';
+import { RolesModule } from '@roles/roles.module';
+import { EmployeesModule } from '@employees/employees.module';
+import { ClientsModule } from '@clients/clients.module';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { MailModule } from './mail/mail.module';
+import { MailModule } from '@mail/mail.module';
 
 @Module({
   imports: [

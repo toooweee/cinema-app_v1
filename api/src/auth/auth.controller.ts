@@ -5,17 +5,18 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from '@auth/dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { refreshTokenKey } from '@tokens/types/refresh-token-key';
 import { Public } from '@auth/decorators';
-import { CurrentUser } from '@common/decorators';
+import { Cookies, CurrentUser } from '@common/decorators';
 import { RequestUser } from '@auth/types';
+import { RefreshTokenGuard } from '@auth/guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -57,16 +58,15 @@ export class AuthController {
   }
 
   @Get('refresh')
+  @UseGuards(RefreshTokenGuard)
   @ApiOperation({
     summary: 'Refresh tokens',
   })
   async refresh(
-    @Req() req: Request,
+    @Cookies(refreshTokenKey) refreshToken: string,
     @Res({ passthrough: true }) res: Response,
     @CurrentUser() currentUser: RequestUser,
   ) {
-    console.log(currentUser);
-    const refreshToken: string = req.cookies[refreshTokenKey];
     const tokens = await this.authService.refreshTokens(refreshToken);
     this.setTokenToCookies(tokens.refreshToken, res);
     return {
@@ -78,8 +78,10 @@ export class AuthController {
   @ApiOperation({
     summary: 'Logout. Clear cookies and delete token from db',
   })
-  async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    const refreshToken: string = req.cookies[refreshTokenKey];
+  async logout(
+    @Cookies(refreshTokenKey) refreshToken: string,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     res.cookie(refreshTokenKey, '', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

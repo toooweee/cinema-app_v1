@@ -79,6 +79,15 @@ export class TokensService {
     });
   }
 
+  async validateRefreshToken(
+    token: string,
+  ): Promise<JwtPayload & { exp: string; iat: string }> {
+    return await this.jwtService.verifyAsync(
+      token,
+      this.configService.getOrThrow('JWT_RT_SECRET'),
+    );
+  }
+
   private async findRefreshToken(token: string) {
     return this.prismaService.token.findUnique({
       where: {
