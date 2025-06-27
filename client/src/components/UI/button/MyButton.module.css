@@ -1,0 +1,13 @@
+.myButton {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 18px;
+  max-width: max-content;
+}
+
+.myButton:hover {
+  opacity: 0.8;
+}

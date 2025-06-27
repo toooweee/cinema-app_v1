@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 90px;
+  padding: 10px;
+}
+
+.headerNav {
+  display: flex;
+  gap: 10px;
+}
+
+.headerNavList {
+}
+
+.headerNavItem {
+  font-size: 20px;
+}

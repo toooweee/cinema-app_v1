@@ -1,0 +1,15 @@
+.movieItem {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: space-between;
+}
