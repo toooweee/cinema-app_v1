@@ -1,0 +1,7 @@
+@import "../App.css";
+
+.moviePage {
+  padding: 50px;
+  background-color: #1a161f;
+  border-radius: 1%;
+}

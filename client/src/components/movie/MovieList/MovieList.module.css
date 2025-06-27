@@ -1,0 +1,14 @@
+.title {
+  color: aliceblue;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(30px, 4vw, 50px);
+}
+
+.list {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}

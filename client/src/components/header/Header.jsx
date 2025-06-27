@@ -1,9 +1,10 @@
 import React from "react";
 import classes from "./Header.module.css";
+import MyButton from "../UI/button/MyButton.jsx";
 
 const Header = () => {
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${classes.container}`}>
       <img alt="logo" />
       <nav>
         <ul className={classes.headerNav}>
@@ -25,7 +26,7 @@ const Header = () => {
         </ul>
       </nav>
       <div>
-        <button>Выйти</button>
+        <MyButton>Выйти</MyButton>
       </div>
     </header>
   );
